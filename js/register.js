@@ -19,7 +19,7 @@ $(document).ready(function () {
         // Use jQuery AJAX to send data to the server
         $.ajax({
             type: "POST",
-            url: "/php/register.php",
+            url: "../php/register.php",
             data: formData,
             success: function (response) {
                 // Handle successful response from the server
@@ -31,7 +31,7 @@ $(document).ready(function () {
 
                     // Redirect to login.html directly
                     console.log('Redirecting to login.html');
-                    window.location.href = "/php/login.html";
+                    window.location.href = "../php/login.html";
                 } else {
                     // Handle other response scenarios if needed
                     alert("Registration failed: " + response.message);
@@ -53,7 +53,7 @@ $(document).ready(function () {
     // Redirect to login.html when "Sign In" link is clicked
     $("a[href='#']").click(function (event) {
         event.preventDefault();
-        window.location.href = "/php/login.html";
+        window.location.href = "../php/login.html";
     });
 });
 

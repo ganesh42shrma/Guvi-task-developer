@@ -37,12 +37,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $response['status'] = 'error';
         $response['message'] = 'Username already taken';
     } else {
-        // Generate a unique token for the user
-        $token = bin2hex(random_bytes(16));
-
         // Use prepared statements to prevent SQL injection
-        $stmt = $conn->prepare("INSERT INTO users (firstname, lastname, username, email, password, token) VALUES (?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("ssssss", $firstname, $lastname, $username, $email, $password, $token);
+        $stmt = $conn->prepare("INSERT INTO users (firstname, lastname, username, email, password) VALUES (?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssss", $firstname, $lastname, $username, $email, $password);
 
         if ($stmt->execute()) {
             $response['status'] = 'success';

@@ -1,0 +1,10 @@
+{
+    "_id": "user_id_123",
+    "name": "John Doe",
+    "gender": "male",
+    "age": 25,
+    "dob": "1998-03-08",
+    "contact": "john.doe@example.com",
+    "bio": "This is my bio."
+  }
+  

@@ -1,0 +1,18 @@
+{
+    "php.suggest.basic": false,
+    "php.validate.enable": false,
+    "php.validate.executablePath": "C:/xampp/php/php.exe", // Adjust the path accordingly
+    "php.validate.run": "onSave",
+    "php.executablePath": "C:/xampp/php/php.exe", // Adjust the path accordingly
+    "php.executablePathWindows": "C:/xampp/php/php.exe", // Adjust the path accordingly
+    "intelephense.environment.phpVersion": "8.0.30", // Adjust the PHP version accordingly
+    "intelephense.environment.phpIni": "C:/xampp/php/php.ini", // Adjust the path accordingly
+    "intelephense.diagnostics.undefinedTypes": false,
+    "intelephense.diagnostics.undefinedFunctions": false,
+    "intelephense.diagnostics.undefinedConstants": false,
+    "intelephense.files.exclude": ["vendor/**/*"],
+    "intelephense.stubs": [
+        "C:/xampp/php/extras/stubs",
+        "C:/xampp/php/extras/pecl-stubs"
+    ]
+}

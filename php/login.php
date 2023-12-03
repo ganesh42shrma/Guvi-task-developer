@@ -41,21 +41,28 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         $response['status'] = 'success';
                         $response['message'] = 'Login successful!';
 
-                        // Generate a unique token for the user
-                        $token = bin2hex(random_bytes(16));
-                        
-                        // Update the user's token in the database
-                        $updateStmt = $conn->prepare("UPDATE users SET token = ? WHERE username = ?");
-                        $updateStmt->bind_param("ss", $token, $username);
-                        
-                        if ($updateStmt->execute()) {
-                            $response['token'] = $token;
-                        } else {
-                            $response['status'] = 'error';
-                            $response['message'] = 'Error updating user token: ' . $updateStmt->error;
-                        }
+                        // Use the existing token for the user if available
+                        $token = $user['token'];
 
-                        $updateStmt->close();
+                        // Generate a new token only if the user doesn't have one
+                        if (empty($token)) {
+                            $token = bin2hex(random_bytes(16));
+
+                            // Update the user's token in the database
+                            $updateStmt = $conn->prepare("UPDATE users SET token = ? WHERE username = ?");
+                            $updateStmt->bind_param("ss", $token, $username);
+                            
+                            if ($updateStmt->execute()) {
+                                $response['token'] = $token;
+                            } else {
+                                $response['status'] = 'error';
+                                $response['message'] = 'Error updating user token: ' . $updateStmt->error;
+                            }
+
+                            $updateStmt->close();
+                        } else {
+                            $response['token'] = $token;
+                        }
                     } else {
                         $response['status'] = 'error';
                         $response['message'] = 'Incorrect password';
